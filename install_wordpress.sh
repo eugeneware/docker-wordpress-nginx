@@ -24,22 +24,22 @@ s/password_here/$WORDPRESS_PASSWORD/
 /'LOGGED_IN_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/
 /'NONCE_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/" /usr/share/nginx/www/wp-config-sample.php > /usr/share/nginx/www/wp-config.php
 
-ACTIVATE_PLUGINS=<<ENDL
-$plugins = get_option( 'active_plugins' );
-if ( count( $plugins ) === 0 ) {
-  $wp_rewrite->set_permalink_structure( '/%postname%/' );
-  $pluginsToActivate = array( 'nginx-helper' );
-  foreach ($pluginsToActivate as $plugin) {
-    if ( !in_array( $plugin, $plugins ) ) {
-      array_push( $plugins, $plugin );
-      update_option( 'active_plugins', $plugins );
+
+cat << ENDL >> /usr/share/nginx/www/wp-config.php
+\$plugins = get_option( 'active_plugins' );
+if ( count( \$plugins ) === 0 ) {
+  require_once(ABSPATH .'/wp-admin/includes/plugin.php');
+  \$wp_rewrite->set_permalink_structure( '/%postname%/' );
+  \$pluginsToActivate = array( 'nginx-helper/nginx-helper.php' );
+  foreach ( \$pluginsToActivate as \$plugin ) {
+    if ( !in_array( \$plugin, \$plugins ) ) {
+      activate_plugin( '/usr/share/nginx/www/wp-content/plugins/' . \$plugin );
     }
   }
 }
 ENDL
 
 echo $ACTIVATE_PLUGINS >> /usr/share/nginx/www/wp-config.php
-
 chown www-data:www-data /usr/share/nginx/www/wp-config.php
 mysqladmin -u root password $MYSQL_PASSWORD 
 mysql -uroot -p$MYSQL_PASSWORD -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY '$WORDPRESS_PASSWORD'; FLUSH PRIVILEGES;"
