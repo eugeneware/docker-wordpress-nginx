@@ -40,20 +40,12 @@ RUN mv /usr/share/nginx/www/5* /usr/share/nginx/wordpress
 RUN rm -rf /usr/share/nginx/www
 RUN mv /usr/share/nginx/wordpress /usr/share/nginx/www
 RUN chown -R www-data:www-data /usr/share/nginx/www
-ADD ./install_wordpress.sh /install_wordpress.sh
-RUN chmod 755 /install_wordpress.sh
-RUN /install_wordpress.sh
 
-# Install plugins
-# RUN curl https://raw.github.com/wp-cli/wp-cli.github.com/master/installer.sh | INSTALL_DIR=/usr/local bash
-# RUN wp --path=/usr/share/nginx/www plugin install nginx-helper
-# RUN wp --path=/usr/share/nginx/www plugin activate nginx-helper
-# RUN wp --path=/usr/share/nginx/www rewrite structure /%postname%/
-RUN curl -O `curl -i -s http://wordpress.org/plugins/nginx-helper/ | egrep -o "http://downloads.wordpress.org/plugin/[^']+"`
-RUN unzip nginx-helper.1.7.2.zip -d /usr/share/nginx/www/wp-content/plugins
-RUN chown -R www-data:www-data /usr/share/nginx/www/wp-content/plugins/nginx-helper
+# Wordpress Initialization and Startup Script
+ADD ./start.sh /start.sh
+RUN chmod 755 /start.sh
 
 # private expose
 EXPOSE 80
 
-CMD ["/usr/local/bin/supervisord", "-n"]
+CMD ["/bin/bash", "/start.sh"]
