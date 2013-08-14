@@ -18,6 +18,16 @@ $ docker build -t="docker-wordpress-nginx" .
 
 To spawn a new instance of wordpress:
 
-```
+```bash
 $ docker run -d docker-wordpress-nginx
+```
+
+You'll see an ID output like:
+```
+d404cc2fa27b
+```
+
+Use this ID to check the port it's on:
+```bash
+$ docker port d404cc2fa27b 80 # Make sure to change the ID to yours!
 ```
