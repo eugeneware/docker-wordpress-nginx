@@ -11,7 +11,7 @@ You can check out his [Apache version here](https://github.com/jbfink/docker-wor
 ```
 $ git clone https://github.com/eugeneware/docker-wordpress-nginx.git
 $ cd docker-wordpress-nginx
-$ docker build -t="docker-wordpress-nginx" .
+$ sudo docker build -t="docker-wordpress-nginx" .
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ $ docker build -t="docker-wordpress-nginx" .
 To spawn a new instance of wordpress:
 
 ```bash
-$ docker run -d docker-wordpress-nginx
+$ sudo docker run -d docker-wordpress-nginx
 ```
 
 You'll see an ID output like:
@@ -29,5 +29,5 @@ d404cc2fa27b
 
 Use this ID to check the port it's on:
 ```bash
-$ docker port d404cc2fa27b 80 # Make sure to change the ID to yours!
+$ sudo docker port d404cc2fa27b 80 # Make sure to change the ID to yours!
 ```
