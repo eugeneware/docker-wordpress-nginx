@@ -6,7 +6,7 @@ RUN apt-get -y upgrade
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -s /bin/true /sbin/initctl
+RUN ln -sf /bin/true /sbin/initctl
 
 # Basic Requirements
 RUN apt-get -y install mysql-server mysql-client nginx php5-fpm php5-mysql php-apc pwgen python-setuptools curl git unzip
