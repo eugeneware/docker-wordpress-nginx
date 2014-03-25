@@ -27,7 +27,7 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
 
   # Download nginx helper plugin
   curl -O `curl -i -s http://wordpress.org/plugins/nginx-helper/ | egrep -o "http://downloads.wordpress.org/plugin/[^']+"`
-  unzip nginx-helper.*.zip -d /usr/share/nginx/www/wp-content/plugins
+  unzip -o nginx-helper.*.zip -d /usr/share/nginx/www/wp-content/plugins
   chown -R www-data:www-data /usr/share/nginx/www/wp-content/plugins/nginx-helper
 
   # Activate nginx plugin and set up pretty permalink structure once logged in
