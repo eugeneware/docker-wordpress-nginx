@@ -19,27 +19,7 @@ $ sudo docker build -t="docker-wordpress-nginx" .
 To spawn a new instance of wordpress:
 
 ```bash
-$ sudo docker run -p 80 -d docker-wordpress-nginx
+$ sudo ./run.sh
 ```
 
-You'll see an ID output like:
-```
-d404cc2fa27b
-```
-
-Use this ID to check the port it's on:
-```bash
-$ sudo docker port d404cc2fa27b 80 # Make sure to change the ID to yours!
-```
-
-This command returns the container ID, which you can use to find the external port you can use to access Wordpress from your host machine:
-
-```
-$ docker port <container-id> 80
-```
-
-You can the visit the following URL in a browser on your host machine to get started:
-
-```
-http://127.0.0.1:<port>
-```
+This will tell you the port wordpress is running on, and the directory www & the database are stored in.
