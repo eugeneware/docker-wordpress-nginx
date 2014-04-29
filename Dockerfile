@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:14.04
 MAINTAINER Eugene Ware <eugene@noblesamurai.com>
 
 # Keep upstart from complaining
