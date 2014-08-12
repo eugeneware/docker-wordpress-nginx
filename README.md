@@ -16,30 +16,27 @@ $ sudo docker build -t="docker-wordpress-nginx" .
 
 ## Usage
 
-To spawn a new instance of wordpress:
+To spawn a new instance of wordpress on port 80.  The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machien.
 
 ```bash
-$ sudo docker run -p 80 -d docker-wordpress-nginx
+$ sudo docker run -p 80:80 --name docker-wordpress-nginx -d docker-wordpress-nginx
 ```
 
-You'll see an ID output like:
-```
-d404cc2fa27b
-```
-
-Use this ID to check the port it's on:
-```bash
-$ sudo docker port d404cc2fa27b 80 # Make sure to change the ID to yours!
-```
-
-This command returns the container ID, which you can use to find the external port you can use to access Wordpress from your host machine:
+Start your newly created docker
 
 ```
-$ docker port <container-id> 80
+$ sudo docker start docker-wordpress-nginx
+```
+
+After starting the docker-wordpress-nginx check to see if it started and the port mapping is correct.  This will also report the port mapping between the docker container and the host machine.
+```
+$ sudo docker ps
+
+0.0.0.0:80 -> 80/tcp docker-wordpress-nginx
 ```
 
 You can the visit the following URL in a browser on your host machine to get started:
 
 ```
-http://127.0.0.1:<port>
+http://127.0.0.1:80
 ```
