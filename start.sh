@@ -26,7 +26,7 @@ if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   /'NONCE_SALT'/s/put your unique phrase here/`pwgen -c -n -1 65`/" /usr/share/nginx/www/wp-config-sample.php > /usr/share/nginx/www/wp-config.php
 
   # Download nginx helper plugin
-  curl -O `curl -i -s http://wordpress.org/plugins/nginx-helper/ | egrep -o "http://downloads.wordpress.org/plugin/[^']+"`
+  curl -O `curl -i -s https://wordpress.org/plugins/nginx-helper/ | egrep -o "https://downloads.wordpress.org/plugin/[^']+"`
   unzip -o nginx-helper.*.zip -d /usr/share/nginx/www/wp-content/plugins
   chown -R www-data:www-data /usr/share/nginx/www/wp-content/plugins/nginx-helper
 
