@@ -8,7 +8,16 @@ You can check out his [Apache version here](https://github.com/jbfink/docker-wor
 
 ## Installation
 
+The easiest way to get this docker image installed is to pull the latest version
+from the Docker registry:
+
+```bash
+$ docker pull eugeneware/docker-wordpress-nginx
 ```
+
+If you'd like to build the image yourself then:
+
+```bash
 $ git clone https://github.com/eugeneware/docker-wordpress-nginx.git
 $ cd docker-wordpress-nginx
 $ sudo docker build -t="docker-wordpress-nginx" .
