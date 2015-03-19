@@ -20,7 +20,7 @@ If you'd like to build the image yourself then:
 ```bash
 $ git clone https://github.com/eugeneware/docker-wordpress-nginx.git
 $ cd docker-wordpress-nginx
-$ sudo docker build -t="docker-wordpress-nginx" .
+$ sudo docker build -t="eugeneware/docker-wordpress-nginx" .
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ $ sudo docker build -t="docker-wordpress-nginx" .
 To spawn a new instance of wordpress on port 80.  The -p 80:80 maps the internal docker port 80 to the outside port 80 of the host machine.
 
 ```bash
-$ sudo docker run -p 80:80 --name docker-wordpress-nginx -d docker-wordpress-nginx
+$ sudo docker run -p 80:80 --name docker-wordpress-nginx -d eugeneware/docker-wordpress-nginx
 ```
 
 Start your newly created docker.
