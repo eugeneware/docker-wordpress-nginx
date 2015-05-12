@@ -1,13 +1,13 @@
 #!/bin/bash
 if [ ! -f /usr/share/nginx/www/wp-config.php ]; then
   #mysql has to be started this way as it doesn't work to call from /etc/init.d
-  /usr/bin/mysqld_safe & 
+  /usr/bin/mysqld_safe &
   sleep 10s
   # Here we generate random passwords (thank you pwgen!). The first two are for mysql users, the last batch for random keys in wp-config.php
   WORDPRESS_DB="wordpress"
   MYSQL_PASSWORD=`pwgen -c -n -1 12`
   WORDPRESS_PASSWORD=`pwgen -c -n -1 12`
-  #This is so the passwords show up in logs. 
+  #This is so the passwords show up in logs.
   echo mysql root password: $MYSQL_PASSWORD
   echo wordpress password: $WORDPRESS_PASSWORD
   echo $MYSQL_PASSWORD > /mysql-root-pw.txt
